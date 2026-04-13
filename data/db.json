@@ -1,0 +1,21 @@
+{
+  "tasks": [],
+  "columns": [
+    {
+      "id": "backlog",
+      "title": "Backlog"
+    },
+    {
+      "id": "todo",
+      "title": "A Fazer"
+    },
+    {
+      "id": "doing",
+      "title": "Em Andamento"
+    },
+    {
+      "id": "done",
+      "title": "Concluido"
+    }
+  ]
+}

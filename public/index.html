@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Escala Online</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/frappe-gantt/dist/frappe-gantt.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Kanban + Escala + Relatorios</h1>
+      <p>Gestao de tarefas com autenticacao Firebase, Gantt e envio de relatorios por e-mail.</p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Autenticacao</h2>
+        <p id="auth-mode">Modo aguardando configuracao...</p>
+        <form id="auth-form" class="inline-form">
+          <input type="email" id="auth-email" placeholder="E-mail" required />
+          <input type="password" id="auth-password" placeholder="Senha" required />
+          <button type="submit" id="login-btn">Entrar</button>
+          <button type="button" id="register-btn">Registrar</button>
+          <button type="button" id="logout-btn" disabled>Sair</button>
+        </form>
+        <p id="auth-status">Nao autenticado.</p>
+      </section>
+
+      <section class="card">
+        <h2>Nova tarefa</h2>
+        <form id="task-form" class="grid-form">
+          <input type="text" id="task-title" placeholder="Titulo" required />
+          <textarea id="task-description" placeholder="Descricao"></textarea>
+          <input type="text" id="task-responsible" placeholder="Responsavel" />
+          <select id="task-priority">
+            <option value="baixa">Prioridade Baixa</option>
+            <option value="media" selected>Prioridade Media</option>
+            <option value="alta">Prioridade Alta</option>
+          </select>
+          <select id="task-status">
+            <option value="backlog">Backlog</option>
+            <option value="todo" selected>A Fazer</option>
+            <option value="doing">Em Andamento</option>
+            <option value="done">Concluido</option>
+          </select>
+          <label>
+            Inicio
+            <input type="date" id="task-start-date" />
+          </label>
+          <label>
+            Fim
+            <input type="date" id="task-due-date" />
+          </label>
+          <select id="task-shift">
+            <option value="">Escala (opcional)</option>
+          </select>
+          <button type="submit">Criar tarefa</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>Quadro Kanban</h2>
+          <button id="reload-board-btn">Atualizar</button>
+        </div>
+        <div id="kanban-board" class="kanban-board"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>Relatorio geral - Gantt</h2>
+          <button id="reload-gantt-btn">Recarregar Gantt</button>
+        </div>
+        <div id="gantt" class="gantt-container"></div>
+      </section>
+
+      <section class="card">
+        <h2>Relatorio diario</h2>
+        <div class="inline-form">
+          <input type="date" id="daily-date" />
+          <button id="load-daily-btn">Carregar relatorio</button>
+          <button id="download-png-btn">Baixar foto (PNG)</button>
+          <button id="download-pdf-btn">Baixar PDF</button>
+        </div>
+        <div id="daily-report" class="daily-report">
+          <p>Carregue um relatorio para visualizar.</p>
+        </div>
+        <canvas id="status-chart" height="120"></canvas>
+      </section>
+
+      <section class="card">
+        <h2>Disparo por e-mail</h2>
+        <form id="email-form" class="grid-form">
+          <input type="email" id="email-to" placeholder="Destinatario" required />
+          <input type="text" id="email-subject" placeholder="Assunto" required />
+          <textarea id="email-message" placeholder="Mensagem (opcional)"></textarea>
+          <button type="submit">Enviar ultimo relatorio gerado</button>
+        </form>
+        <p id="email-status">Nenhum envio realizado.</p>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="/config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="https://unpkg.com/frappe-gantt/dist/frappe-gantt.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@3.0.4/dist/jspdf.umd.min.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
