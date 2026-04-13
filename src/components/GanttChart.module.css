@@ -1,0 +1,119 @@
+.wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.headerRow {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-hover);
+}
+
+.labelCol {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem;
+}
+
+.timelineHeader {
+  flex: 1;
+  position: relative;
+  min-height: 28px;
+  border-left: 1px solid var(--border);
+}
+
+.monthTick {
+  position: absolute;
+  top: 6px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.grid {
+  position: relative;
+}
+
+.dayStripes {
+  position: absolute;
+  left: 220px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent calc(100% / 14 - 1px),
+    var(--border) calc(100% / 14 - 1px),
+    var(--border) calc(100% / 14)
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.row {
+  display: flex;
+  min-height: 52px;
+  border-bottom: 1px solid var(--border);
+  align-items: stretch;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row .labelCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.meta {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.track {
+  flex: 1;
+  position: relative;
+  border-left: 1px solid var(--border);
+  min-height: 52px;
+}
+
+.bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  min-width: 4px;
+}
+
+@media (max-width: 720px) {
+  .labelCol {
+    width: 140px;
+  }
+
+  .dayStripes {
+    left: 140px;
+  }
+}
