@@ -218,6 +218,7 @@ export function KanbanDashboard() {
   const [tasks, setTasks] = useState<Task[]>(demoTasks);
   const [schedule, setSchedule] = useState(demoScheduleOverview);
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(demoUser);
+  const [isClient, setIsClient] = useState(false);
   const [authStatus, setAuthStatus] = useState<"demo" | "loading" | "authenticated" | "signed_out">(
     isFirebaseConfigured() ? "loading" : "demo",
   );
@@ -227,6 +228,10 @@ export function KanbanDashboard() {
   const [emailTarget, setEmailTarget] = useState(demoUser.email);
   const [sendingEmail, setSendingEmail] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -298,6 +303,12 @@ export function KanbanDashboard() {
 
   const completionRate = Math.round(tasks.reduce((total, task) => total + task.percentComplete, 0) / Math.max(tasks.length, 1));
   const overdueCount = tasks.filter((task) => task.status !== "done" && parseISO(task.dueDate) < new Date()).length;
+
+  const chartPlaceholder = (
+    <div className="flex h-[280px] items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-white text-sm text-slate-400">
+      Grafico carregado no navegador
+    </div>
+  );
 
   function updateTaskStatus(taskId: string, status: TaskStatus) {
     setTasks((current) =>
@@ -629,32 +640,40 @@ export function KanbanDashboard() {
           <div className="grid gap-6 xl:grid-cols-2">
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
               <p className="mb-3 text-sm font-semibold text-slate-900">Distribuicao por status</p>
-              <div className="h-[280px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={statusChartData} dataKey="value" nameKey="name" innerRadius={52} outerRadius={92} paddingAngle={4}>
-                      {statusChartData.map((entry) => (
-                        <Cell key={entry.name} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
+              {isClient ? (
+                <div className="h-[280px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie data={statusChartData} dataKey="value" nameKey="name" innerRadius={52} outerRadius={92} paddingAngle={4}>
+                        {statusChartData.map((entry) => (
+                          <Cell key={entry.name} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                chartPlaceholder
+              )}
             </div>
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
               <p className="mb-3 text-sm font-semibold text-slate-900">Carga por responsavel</p>
-              <div className="h-[280px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={workloadData}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="name" tickLine={false} axisLine={false} fontSize={11} />
-                    <YAxis allowDecimals={false} tickLine={false} axisLine={false} fontSize={11} />
-                    <Tooltip />
-                    <Bar dataKey="total" fill="#2563eb" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+              {isClient ? (
+                <div className="h-[280px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={workloadData}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                      <XAxis dataKey="name" tickLine={false} axisLine={false} fontSize={11} />
+                      <YAxis allowDecimals={false} tickLine={false} axisLine={false} fontSize={11} />
+                      <Tooltip />
+                      <Bar dataKey="total" fill="#2563eb" radius={[8, 8, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                chartPlaceholder
+              )}
             </div>
           </div>
 
