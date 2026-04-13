@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useBoard } from '../contexts/BoardContext'
 import { useAuth } from '../contexts/AuthContext'
 import { convertShiftToTask, fetchShiftItems } from '../services/scheduleService'
-import { ShiftItem } from '../types'
+import type { ShiftItem } from '../types'
 
 export function ScaleIntegrationView() {
   const { importTasks } = useBoard()

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ShiftItem, TaskInput } from '../types'
+import type { ShiftItem, TaskInput } from '../types'
 
 interface FetchShiftParams {
   startDate: string

@@ -1,4 +1,5 @@
-import { FirebaseOptions, getApps, initializeApp } from 'firebase/app'
+import { getApps, initializeApp } from 'firebase/app'
+import type { FirebaseOptions } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { getFunctions } from 'firebase/functions'

@@ -2,7 +2,7 @@ import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { saveAs } from 'file-saver'
-import { DailyReportSummary, KanbanTask } from '../types'
+import type { DailyReportSummary, KanbanTask } from '../types'
 
 export function buildSummary(tasks: KanbanTask[], date: string): DailyReportSummary {
   const delayed = tasks.filter((task) => task.status !== 'done' && task.dueDate < date).length

@@ -1,11 +1,12 @@
 import {
   GoogleAuthProvider,
-  User,
   onAuthStateChanged,
   signInWithPopup,
   signOut,
 } from 'firebase/auth'
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import type { User } from 'firebase/auth'
+import type { ReactNode } from 'react'
 import { auth, isFirebaseConfigured } from '../firebase'
 
 interface AuthContextValue {

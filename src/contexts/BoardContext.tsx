@@ -8,10 +8,11 @@ import {
   setDoc,
   updateDoc,
 } from 'firebase/firestore'
-import { ReactNode, createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
 import { db, isFirebaseConfigured } from '../firebase'
 import { useAuth } from './AuthContext'
-import { KanbanTask, TaskInput, TaskStatus } from '../types'
+import type { KanbanTask, TaskInput, TaskStatus } from '../types'
 
 interface BoardContextValue {
   tasks: KanbanTask[]

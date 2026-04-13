@@ -1,5 +1,6 @@
-import { FormEvent, useEffect, useState } from 'react'
-import { KanbanTask, TaskInput, TaskStatus } from '../types'
+import { useEffect, useState } from 'react'
+import type { FormEvent } from 'react'
+import type { KanbanTask, TaskInput, TaskStatus } from '../types'
 
 interface TaskFormProps {
   initialStatus: TaskStatus

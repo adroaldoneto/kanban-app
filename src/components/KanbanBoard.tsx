@@ -1,6 +1,7 @@
-import { DragEvent, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
+import type { DragEvent } from 'react'
 import { useBoard } from '../contexts/BoardContext'
-import { KanbanTask, TaskStatus } from '../types'
+import type { KanbanTask, TaskStatus } from '../types'
 import { TaskForm } from './TaskForm'
 
 const COLUMNS: Array<{ status: TaskStatus; title: string }> = [
