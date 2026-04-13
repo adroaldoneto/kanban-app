@@ -1,0 +1,306 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #111827;
+  background: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f4f6;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  padding: 10px 14px;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+button.ghost {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+button.danger {
+  background: #dc2626;
+}
+
+.centered-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.auth-card {
+  width: min(440px, 95%);
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  display: grid;
+  gap: 12px;
+}
+
+.app-shell {
+  padding: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+
+.topbar {
+  background: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.topbar h2 {
+  margin: 0;
+}
+
+.topbar p {
+  margin: 4px 0 0;
+  color: #4b5563;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.tabs {
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 600;
+}
+
+.tab.active {
+  background: #2563eb;
+  color: white;
+}
+
+.content {
+  display: grid;
+  gap: 12px;
+}
+
+.panel {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.header-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-form {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.row.two > * {
+  flex: 1;
+  min-width: 200px;
+}
+
+.row.three > * {
+  flex: 1;
+  min-width: 180px;
+}
+
+.row.end {
+  justify-content: flex-end;
+}
+
+.kanban-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, minmax(220px, 1fr));
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.column {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  min-height: 280px;
+  padding: 10px;
+}
+
+.column > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.column-body {
+  display: grid;
+  gap: 8px;
+}
+
+.task-card {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  background: #f9fafb;
+  display: grid;
+  gap: 6px;
+}
+
+.task-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.task-card p {
+  margin: 0;
+}
+
+.task-card small {
+  color: #4b5563;
+}
+
+.priority-alta {
+  border-left: 4px solid #dc2626;
+}
+
+.priority-media {
+  border-left: 4px solid #d97706;
+}
+
+.priority-baixa {
+  border-left: 4px solid #16a34a;
+}
+
+.gantt-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.gantt-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  gap: 10px;
+}
+
+.gantt-label {
+  display: grid;
+}
+
+.gantt-label small {
+  color: #4b5563;
+}
+
+.gantt-track {
+  position: relative;
+  height: 34px;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.gantt-bar {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #2563eb, #60a5fa);
+  min-width: 6px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+th,
+td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: left;
+}
+
+.report-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+}
